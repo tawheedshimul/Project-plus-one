@@ -20,7 +20,7 @@ function Category() {
                 heading={"Order Online"}>
             </SectionTitle>
             <Swiper
-                slidesPerView={4}
+                slidesPerView={2}
                 loop={true}
                 spaceBetween={30}
                 centeredSlides={true}
