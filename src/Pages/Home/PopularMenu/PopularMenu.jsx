@@ -30,8 +30,10 @@ function PopularMenu() {
                     ></MenuItem>)
                 }
             </div>
+            <button className='text-center  mt-8 w-full'><span className='border-b-2 hover:border-red-500 ease-in-out'>View Full Menu</span></button>
         </div>
     )
 }
 
 export default PopularMenu;
+
