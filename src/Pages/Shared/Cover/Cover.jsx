@@ -9,6 +9,18 @@ function Cover({ img, title }) {
             bgImageAlt="the dog"
             strength={-200}
             bgImageStyle={{ width: '100%', height: '600px', backgroundSize: 'cover' }}
+            renderLayer={percentage => (
+                <div
+                    style={{
+                        position: 'absolute',
+                        background: `rgba(0, 0, 0, ${percentage * 0.3})`,
+                        width: '100%',
+                        height: '100%',
+                        display: 'none', // Hide the overlay on smaller screens
+                        // or adjust the opacity for mobile screens
+                    }}
+                />
+            )}
         >
             <div className="hero my-20 container mx-auto">
                 <div className="hero-overlay bg-opacity-80"></div>
@@ -19,7 +31,6 @@ function Cover({ img, title }) {
                     </div>
                 </div>
             </div>
-            {/* <div style={{ height: '200px' }} /> */}
         </Parallax>
     );
 }
