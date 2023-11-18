@@ -8,7 +8,7 @@ function Cover({ img, title }) {
             bgImage={img}
         >
             <div className="hero sm:w-full md:h-[500px] my-24 container mx-auto">
-                <div className="hero-overlay bg-opacity-50"></div>
+                <div className="hero-overlay bg-opacity-60"></div>
                 <div className="hero-content text-center text-neutral-content">
                     <div className="max-w-md">
                         <h1 className="text-3xl font-bold uppercase">{title}</h1>
