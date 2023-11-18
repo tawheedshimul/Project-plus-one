@@ -7,7 +7,8 @@ function MenuItem({ item }) {
             <img
                 style={{
                     borderRadius: "0 50px 50px 50px",
-                    width: "90px"
+                    width: "90px",
+                    height: "80px"
                 }}
                 src={image}
             />
