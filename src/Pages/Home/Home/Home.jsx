@@ -15,7 +15,7 @@ function Home() {
       </Helmet>
       <Banner></Banner>
       <Category></Category>
-      <PopularMenu></PopularMenu>
+      {/* <PopularMenu></PopularMenu> */}
       <CallUs></CallUs>
       <Featured></Featured>
       <Testimonial></Testimonial>
