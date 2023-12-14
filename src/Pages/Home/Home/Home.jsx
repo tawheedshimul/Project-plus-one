@@ -6,6 +6,7 @@ import PopularMenu from '../PopularMenu/PopularMenu';
 import Featured from '../Featured/Featured';
 import Testimonial from '../Testimonials/Testimonial';
 import CallUs from '../CallUs/CallUs';
+import UserList from '../UserList/UserList';
 
 function Home() {
   return (
@@ -14,6 +15,7 @@ function Home() {
         <title>ProjectPlus | Home</title>
       </Helmet>
       <Banner></Banner>
+      {/* <UserList></UserList> */}
       <Category></Category>
       {/* <PopularMenu></PopularMenu> */}
       <CallUs></CallUs>

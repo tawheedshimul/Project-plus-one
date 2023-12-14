@@ -1,9 +1,12 @@
 import React, { useContext, useState, useRef, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { AuthContext } from '../../../providers/AuthProvider';
+import { MdOutlineShoppingCart } from "react-icons/md";
+import useCart from '../../../hooks/UseCart';
 
 const Navbar = () => {
     const { user, logOut } = useContext(AuthContext);
+    const [cart] = useCart();
     const [isMenuOpen, setMenuOpen] = useState(false);
     const location = useLocation();
     const navbarRef = useRef(null);
@@ -22,6 +25,7 @@ const Navbar = () => {
         { to: '/menu', label: 'Our Menu' },
         { to: '/Order/salad', label: 'Order Food' },
         { to: '/secret', label: 'Secret' },
+
     ];
 
     const toggleMenu = () => setMenuOpen(!isMenuOpen);
@@ -44,16 +48,18 @@ const Navbar = () => {
     }, []);
 
     return (
-        <div className="fixed h-10 z-50 bg-gray-800 bg-opacity-60 navbar">
+        <div className="fixed h-10 z-50 bg-gray-800 bg-opacity-70 navbar">
             <div className="container mx-auto flex justify-between items-center py-4" ref={navbarRef}>
-                <Link to="/" className="text-white text-2xl font-bold">
-                    ProjectPlus
+                <Link to="/" className="text-red-500 text-2xl font-bold">
+                    TawheedFooD
                 </Link>
                 <div className="lg:hidden flex">
                     <div className='flex me-2'>
+
                         {user ? (
                             <>
                                 <img src={user.photoURL} className='h-10 w-10 rounded-full p-1' />
+
                                 <button
                                     className="btn btn-outline btn-sm text-white mt-1"
                                     onClick={handleLogOut}
@@ -96,16 +102,23 @@ const Navbar = () => {
                                 <Link
                                     to={item.to}
                                     onClick={closeMenu}
-                                    className={`text-white hover:text-gray-300 ${location.pathname === item.to ? 'border-b-2 border-white' : ''
+                                    className={`text-white hover:text-gray-300 ${location.pathname === item.to ? 'border-b-2 animate-pulse border-white' : ''
                                         }`}
                                 >
                                     {item.label}
                                 </Link>
                             </li>
                         ))}
+
                     </ul>
                 </div>
                 <div className="hidden lg:flex items-center">
+                    <Link to="/dashboard/mycart">
+                        <button className="text-2xl btn">
+                            <MdOutlineShoppingCart />
+                            <div className="badge badge-secondary">+{cart?.length || 0}</div>
+                        </button>
+                    </Link>
                     {user ? (
                         <>
                             <img src={user.photoURL} className='h-10 w-10 rounded-full p-1' />
@@ -128,25 +141,23 @@ const Navbar = () => {
                     )}
                 </div>
             </div>
-
             {isMenuOpen && (
-                <div className="lg:hidden bg-gray-800 bg-opacity-80 w-64 fixed top-16 right-0 h-screen p-4">
-                    <ul className="flex-col flex space-y-4">
+                <div className="lg:hidden bg-gray-800 bg-opacity-95 w-64 fixed top-16 right-0 p-4">
+                    <div className="flex-col flex space-y-4 h-screen">
                         {navItems.map((item) => (
-                            <li key={item.to}>
+                            <li key={item.to} className="flex items-start">
                                 <Link
                                     to={item.to}
                                     onClick={closeMenu}
-                                    className={`text-white hover:text-gray-300 ${location.pathname === item.to ? 'font-bold' : ''
-                                        }`}
+                                    className={`hover:text-gray-300 text-white ${location.pathname === item.to ? 'font-bold border-s-4 border-red-500 ps-3' : ''}`}
                                 >
                                     {item.label}
                                 </Link>
                             </li>
                         ))}
-
-                    </ul>
+                    </div>
                 </div>
+
             )}
         </div>
     );
