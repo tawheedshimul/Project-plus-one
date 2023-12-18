@@ -54,6 +54,11 @@ const Navbar = () => {
                     TawheedFooD
                 </Link>
                 <div className="lg:hidden flex">
+                    <Link className='flex items-center text-3xl text-white bg-gray-400 rounded bg-opacity-30' to="/dashboard/mycart">
+                    <sup className="bg-red-500 rounded-full px-1 text-white text-sm">+{cart?.length || 0}</sup>
+                        <MdOutlineShoppingCart />
+                        
+                    </Link>
                     <div className='flex me-2'>
 
                         {user ? (
