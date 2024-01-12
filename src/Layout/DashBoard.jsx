@@ -28,7 +28,7 @@ const DashBoard = () => {
                             <>
                                 <li><Link to="/dashboard" className="flex items-center"><MdHome /> Admin Home</Link></li>
                                 <li><NavLink to="payment-history" className="flex items-center"><FaUtensils /> Add Item</NavLink></li>
-                                <li><NavLink to="reservation" className="flex items-center"><MdWallpaper /> Menage Item</NavLink></li>
+                                <li><NavLink to="manageitems" className="flex items-center"><MdWallpaper /> Menage Item</NavLink></li>
                                 <li><NavLink to="reservation" className="flex items-center"><FaBuysellads /> Menage Booking</NavLink></li>
                                 <li><NavLink to="allusers" className="flex items-center"><FaUsers /> All User</NavLink></li>
                                 
