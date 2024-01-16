@@ -17,7 +17,7 @@ function FoodCard({ item }) {
         console.log(item)
         if (user && user.email) {
             const cartItem = { menuItemId: _id, name, image, price, email: user.email }
-            fetch('http://localhost:5000/carts',
+            fetch('https://rendertetsw.onrender.com/',
                 {
                     method: "POST",
                     headers: {
