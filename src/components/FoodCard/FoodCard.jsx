@@ -14,7 +14,6 @@ const FoodCard = ({ item }) => {
 
     const handleAddToCart = () => {
         if (user && user.email) {
-            //send cart item to the database
             const cartItem = {
                 menuId: _id,
                 email: user.email,
@@ -33,7 +32,6 @@ const FoodCard = ({ item }) => {
                             showConfirmButton: false,
                             timer: 1500
                         });
-                        // refetch cart to update the cart items count
                         refetch();
                     }
 
