@@ -1,75 +1,77 @@
-import React, { useContext, useState } from 'react'
-import { AuthContext } from '../../providers/AuthProvider';
-import Swal from 'sweetalert2';
-import { useNavigate } from 'react-router-dom';
-import useCart from '../../hooks/UseCart';
+import Swal from "sweetalert2";
+import { useLocation, useNavigate } from "react-router-dom";
+import UseAuth from "../../hooks/UseAuth";
+import UseAxiosSecure from "../../hooks/useAxiosSecure";
+import useCart from "../../hooks/UseCart";
 
-function FoodCard({ item }) {
-    const { image, price, recipe, name, _id } = item;
-    const { user } = useContext(AuthContext);
-    const [, refetch] = useCart();
+const FoodCard = ({ item }) => {
+    const { name, image, price, recipe, _id } = item;
+    const { user } = UseAuth();
     const navigate = useNavigate();
-    const [showMore, setShowMore] = useState(false);
+    const location = useLocation();
+    const axiosSecure = UseAxiosSecure();
+    const [, refetch] = useCart();
 
-
-
-    const handleAddToCart = item => {
-        console.log(item)
+    const handleAddToCart = () => {
         if (user && user.email) {
-            const cartItem = { menuItemId: _id, name, image, price, email: user.email }
-            fetch('https://rendertetsw.onrender.com/',
-                {
-                    method: "POST",
-                    headers: {
-                        'content-type': 'application/json'
-                    },
-                    body: JSON.stringify(cartItem)
-                })
-                .then(res => res.json())
-                .then(data => {
-                    if (data.insertedId) {
-                        refetch();
+            //send cart item to the database
+            const cartItem = {
+                menuId: _id,
+                email: user.email,
+                name,
+                image,
+                price
+            }
+            axiosSecure.post('/carts', cartItem)
+                .then(res => {
+                    console.log(res.data)
+                    if (res.data.insertedId) {
                         Swal.fire({
                             position: "top-end",
                             icon: "success",
-                            title: "Item added on the cart.",
+                            title: `${name} added to your cart`,
                             showConfirmButton: false,
                             timer: 1500
                         });
+                        // refetch cart to update the cart items count
+                        refetch();
                     }
+
                 })
         }
         else {
             Swal.fire({
-                title: "Please Login to order the food?",
+                title: "You are not Logged In",
+                text: "Please login to add to the cart?",
                 icon: "warning",
                 showCancelButton: true,
                 confirmButtonColor: "#3085d6",
                 cancelButtonColor: "#d33",
-                confirmButtonText: "Login Now!"
+                confirmButtonText: "Yes, login!"
             }).then((result) => {
                 if (result.isConfirmed) {
-                    navigate("/login")
+                    //   send the user to the login page
+                    navigate('/login', { state: { from: location } })
                 }
             });
         }
     }
     return (
-        <div className="relative bg-base-100 shadow-xl">
-            <figure><img className='w-full' src={image} /></figure>
-            <p className='bg-black text-white absolute top-2 right-2 rounded p-2'>$ {price}</p>
-            <div className="card-body">
-                <h2 className="text-center text-3xl">{name}</h2>
-                <div>
-                    <p>{showMore ? recipe : recipe.slice(0, 45) + (recipe.length > 45 ? '...' : '')}{recipe.length > 45 && <button onClick={() => setShowMore(!showMore)}>{showMore ? 'Show Less' : 'Show More'}</button>}</p>
-
-                </div>
-                <div className="card-actions justify-center">
-                    <button onClick={() => handleAddToCart(item)} className="text-center p-2 text-red-500 border-b-2 border-red-500 rounded font-bold hover:bg-black">Add to Cart</button>
+        <div className="card w-96 bg-base-100 shadow-xl">
+            <figure><img src={image} alt="Shoes" /></figure>
+            <p className="absolute right-0 mr-4 mt-4 px-4 bg-slate-900 text-white">${price}</p>
+            <div className="card-body flex flex-col items-center">
+                <h2 className="card-title">{name}</h2>
+                <p>{recipe}</p>
+                <div className="card-actions justify-end">
+                    <button
+                        onClick={handleAddToCart}
+                        className="btn btn-outline bg-slate-100 border-0 border-b-4 border-orange-400 mt-4"
+                    >Add to Cart</button>
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};
 
 export default FoodCard;
