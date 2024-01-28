@@ -10,7 +10,7 @@ import {
     MdWallpaper,
 } from 'react-icons/md';
 import { FaBuysellads, FaUsers, FaUtensils } from 'react-icons/fa';
-import useCart from '../hooks/UseCart';
+import useCart from '../hooks/useCart';
 
 const Dashboard = () => {
     const [cart] = useCart();

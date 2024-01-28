@@ -2,7 +2,7 @@ import Swal from "sweetalert2";
 import { useLocation, useNavigate } from "react-router-dom";
 import UseAuth from "../../hooks/UseAuth";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
-import useCart from "../../hooks/UseCart";
+import useCart from "../../hooks/useCart";
 
 const FoodCard = ({ item }) => {
     const { name, image, price, recipe, _id } = item;

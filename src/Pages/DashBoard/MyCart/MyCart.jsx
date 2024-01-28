@@ -1,8 +1,8 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
-import useCart from '../../../hooks/UseCart';
 import { MdDelete } from 'react-icons/md';
 import Swal from 'sweetalert2';
+import useCart from '../../../hooks/useCart';
 
 function MyCart() {
     const [cart, refetch] = useCart();
