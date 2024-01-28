@@ -1,9 +1,9 @@
 import { FaEdit, FaTrashAlt } from "react-icons/fa";
-import Swal from "sweetalert2";
-import { Link } from "react-router-dom";
 import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 import useMenu from "../../../hooks/useMenu";
+import Swal from "sweetalert2";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import { Link } from "react-router-dom";
 
 
 const ManageItems = () => {
@@ -22,7 +22,9 @@ const ManageItems = () => {
         }).then(async (result) => {
             if (result.isConfirmed) {
                 const res = await axiosSecure.delete(`/menu/${item._id}`);
+                // console.log(res.data);
                 if (res.data.deletedCount > 0) {
+                    // refetch to update the ui
                     refetch();
                     Swal.fire({
                         position: "top-end",
@@ -44,6 +46,7 @@ const ManageItems = () => {
             <div>
                 <div className="overflow-x-auto">
                     <table className="table w-full">
+                        {/* head */}
                         <thead>
                             <tr>
                                 <th>
