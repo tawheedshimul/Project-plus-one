@@ -4,8 +4,8 @@ const axiosPublic = axios.create({
     baseURL: 'https://rendertetsw.onrender.com/'
 })
 
-const useAxiosPublic = () => {
+const UseAxiosPublic = () => {
     return axiosPublic;
 };
 
-export default useAxiosPublic;
+export default UseAxiosPublic;
