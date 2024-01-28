@@ -22,9 +22,7 @@ const ManageItems = () => {
         }).then(async (result) => {
             if (result.isConfirmed) {
                 const res = await axiosSecure.delete(`/menu/${item._id}`);
-                // console.log(res.data);
                 if (res.data.deletedCount > 0) {
-                    // refetch to update the ui
                     refetch();
                     Swal.fire({
                         position: "top-end",
@@ -46,7 +44,6 @@ const ManageItems = () => {
             <div>
                 <div className="overflow-x-auto">
                     <table className="table w-full">
-                        {/* head */}
                         <thead>
                             <tr>
                                 <th>
