@@ -1,14 +1,14 @@
 import { FaEdit, FaTrashAlt } from "react-icons/fa";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
-import UseAxiosSecure from "../../../hooks/UseAxiosSecure";
+import useAxiosSecure from "../../../hooks/UseAxiosSecure";
 import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 import useMenu from "../../../hooks/useMenu";
 
 
 const ManageItems = () => {
     const [menu, , refetch] = useMenu();
-    const axiosSecure = UseAxiosSecure();
+    const axiosSecure = useAxiosSecure();
 
     const handleDeleteItem = (item) => {
         Swal.fire({

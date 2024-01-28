@@ -5,7 +5,7 @@ import UseAuth from "./UseAuth";
 const axiosSecure = axios.create({
     baseURL: 'https://rendertetsw.onrender.com/'
 })
-const UseAxiosSecure = () => {
+const useAxiosSecure = () => {
     const navigate = useNavigate();
     const { logOut } = UseAuth();
 
@@ -39,4 +39,4 @@ const UseAxiosSecure = () => {
     return axiosSecure;
 };
 
-export default UseAxiosSecure;
+export default useAxiosSecure;

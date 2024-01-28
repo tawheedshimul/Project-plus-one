@@ -1,9 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
 import UseAuth from "./UseAuth";
-import UseAxiosSecure from "./UseAxiosSecure";
+import useAxiosSecure from "./UseAxiosSecure";
 
 const useCart = () => {
-    const axiosSecure = UseAxiosSecure();
+    const axiosSecure = useAxiosSecure();
     const { user} = UseAuth();
     const { refetch, data: cart = [] } = useQuery({
         queryKey: ['cart', user?.email],
